@@ -1,9 +1,10 @@
 services:
-  app:
+  nginx:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: kub-ng-1-app
+    image: kub-ng-1-nginx:latest
+    container_name: kub-ng-1-nginx
     ports:
       - "1080:80"
     restart: unless-stopped
