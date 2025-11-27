@@ -1,12 +1,11 @@
 services:
-  nginx:
-    image: nginx:alpine
-    container_name: kub-ng-1-nginx
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kub-ng-1-app
     ports:
       - "1080:80"
-    volumes:
-      - ./dist/kub-ng-1/browser:/usr/share/nginx/html
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
     restart: unless-stopped
     networks:
       - app-network

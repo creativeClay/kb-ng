@@ -19,13 +19,12 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy built application from build stage
-COPY --from=build /app/dist/kub-ng-1/browser /usr/share/nginx/html
+# Use the project dist output (not the /browser subfolder)
+COPY --from=build /app/dist/kub-ng-1 /usr/share/nginx/html
 
-# Copy nginx configuration
+# Optional: keep nginx.conf copy and rest unchanged
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port 80
 EXPOSE 80
 
-# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
